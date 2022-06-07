@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>专题绘图系列 &mdash; GMT 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="问题应对系列" href="../002---%E9%97%AE%E9%A2%98%E5%BA%94%E5%AF%B9%E7%B3%BB%E5%88%97/index.html" />
+    <link rel="prev" title="GMT" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GMT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">专题绘图系列</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">01.晨昏线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">02.多层绘图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">03.多图绘制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">04.中国国界</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">05.图中图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">06.三维切片图</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../002---%E9%97%AE%E9%A2%98%E5%BA%94%E5%AF%B9%E7%B3%BB%E5%88%97/index.html">问题应对系列</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GMT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>专题绘图系列</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/001---专题绘图系列/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>专题绘图系列<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="id2">
+<h2>01.晨昏线<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gmt</span> <span class="n">begin</span>
+<span class="n">gmt</span> <span class="n">figure</span> <span class="n">ex01</span> <span class="n">png</span> <span class="n">E</span><span class="o">+</span><span class="mi">600</span>
+<span class="n">gmt</span> <span class="n">coast</span> <span class="o">-</span><span class="n">Rd</span> <span class="o">-</span><span class="n">JX15c</span><span class="o">/</span><span class="mi">8</span><span class="n">c</span> <span class="o">-</span><span class="n">Bxa60g60</span> <span class="o">-</span><span class="n">Bya30g30</span> <span class="o">-</span><span class="n">W0</span><span class="mf">.5</span><span class="n">p</span> <span class="o">-</span><span class="n">A5000</span> <span class="o">-</span><span class="n">S175</span><span class="o">/</span><span class="mi">210</span><span class="o">/</span><span class="mi">255</span> <span class="o">--</span><span class="n">MAP_FRAME_TYPE</span><span class="o">=</span><span class="n">plain</span>
+<span class="n">REM</span> <span class="n">绘制晨昏线</span>
+<span class="n">gmt</span> <span class="n">solar</span> <span class="o">-</span><span class="n">Td</span><span class="o">+</span><span class="n">d2016</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">09</span><span class="n">T16</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">-</span><span class="n">Gnavy</span><span class="o">@</span><span class="mi">80</span> 
+<span class="n">REM</span> <span class="n">计算指定时间太阳位置并绘制在底图上</span>
+<span class="n">gmt</span> <span class="n">solar</span> <span class="o">-</span><span class="n">I</span><span class="o">+</span><span class="n">d2016</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">09</span><span class="n">T16</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">-</span><span class="n">C</span> <span class="o">|</span> <span class="n">gmt</span> <span class="n">plot</span> <span class="o">-</span><span class="n">Sk</span><span class="nd">@sunglasses</span><span class="o">/</span><span class="mf">1.5</span><span class="n">c</span> <span class="o">-</span><span class="n">Gyellow</span> <span class="o">-</span><span class="n">W0</span><span class="mf">.2</span><span class="n">p</span>
+<span class="n">gmt</span> <span class="n">end</span>
+</pre></div>
+</div>
+<img src="..\_static\ex01.png" alt="ex01" style="zoom:10%;" />
+</section>
+<section id="id3">
+<h2>02.多层绘图<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt <span class="nb">set</span> MAP_FRAME_TYPE plain 
+gmt figure ex01 png E+600
+gmt makecpt -Cjet -T0/60/5 -D
+gmt grdview <span class="m">00</span>.nc -JX8c/8c -JZ10c -R-180/180/-90/90/-100/300 -BWSrt  -I -Wm0p,white -p200/15/-100
+gmt coast -Bx60+l<span class="s2">&quot;Lat(\260)&quot;</span> -By45+l<span class="s2">&quot;Lon(\260)&quot;</span> -Bz100+l<span class="s2">&quot;km&quot;</span>  -BWSrtZ -S175/210/255 -Glightbrown -p200/15/-100 
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p200/15/0 
+gmt grdimage <span class="m">02</span>.nc -E100 -C -p200/15/100
+gmt grdimage <span class="m">04</span>.nc -E100 -C -p200/15/200
+gmt grdimage <span class="m">06</span>.nc -E100 -C -p200/15/300
+gmt end
+</pre></div>
+</div>
+<img src="..\_static\ex02.png" alt="ex01" style="zoom: 10%;" />
+</section>
+<section id="id4">
+<h2>03.多图绘制<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<p><strong>1.basemp</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt <span class="nb">set</span> FONT_LABEL 10p
+gmt <span class="nb">set</span> MAP_FRAME_TYPE plain
+gmt <span class="nb">set</span> MAP_FRAME_PEN <span class="m">0</span>.5p
+gmt <span class="nb">set</span> MAP_TICK_LENGTH_PRIMARY 2p/1p
+gmt figure ex01 png E+600
+gmt subplot begin 2x2 -Fs4c/2.4c -M0.5c -SCb -SRl 
+    gmt makecpt -Cjet -T0/60/5 -D -H &gt;1.cpt
+
+    gmt subplot <span class="nb">set</span> <span class="m">0</span>,0
+    gmt basemap  -R-180/180/-90/90 -Bxa90 -Bya45+l<span class="s2">&quot;Longitude(\260)&quot;</span> -BWSrt
+    gmt grdimage <span class="m">00</span>.nc -E1000 -C1.cpt
+    gmt colorbar -C1.cpt -Bxa10 -By+l<span class="s2">&quot;TECU&quot;</span> -DJMR+v+w6/0.5+e+o6c/-2c
+    gmt grdcontour MAGNATIC.nc -W1p,black -A30+u -C0,
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">105</span> 00UT <span class="p">|</span> gmt text -F+f8p -N
+	
+    gmt subplot <span class="nb">set</span> <span class="m">0</span>,1
+    gmt basemap  -R-180/180/-90/90 -Bxa90 -Bya45 -BWSrt
+    gmt grdimage <span class="m">02</span>.nc -E1000 -C1.cpt
+    gmt grdcontour MAGNATIC.nc -W1p,black -A30+u  -C0,
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">105</span> 02UT <span class="p">|</span> gmt text -F+f8p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">1</span>,0
+    gmt basemap  -R-180/180/-90/90 -Bxa90+l<span class="s2">&quot;Latitude(\260)&quot;</span> -Bya45+l<span class="s2">&quot;Longitude(\260)&quot;</span> -BWSrt
+    gmt grdimage <span class="m">04</span>.nc -E1000 -C1.cpt
+    gmt grdcontour MAGNATIC.nc -W1p,black -A30+u -C0,
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">105</span> 04UT <span class="p">|</span> gmt text -F+f8p -N
+	
+    gmt subplot <span class="nb">set</span> <span class="m">1</span>,1
+    gmt basemap  -R-180/180/-90/90 -Bxa90+l<span class="s2">&quot;Latitude(\260)&quot;</span> -Bya45 -BWSrt
+    gmt grdimage <span class="m">06</span>.nc -E1000 -C1.cpt
+    gmt grdcontour MAGNATIC.nc -W1p,black -A30+u  -C0,
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">105</span> 06UT <span class="p">|</span> gmt text -F+f8p -N
+	
+gmt subplot end
+gmt end 
+pause
+</pre></div>
+</div>
+<img src="..\_static\ex03.png" alt="ex01" style="zoom: 15%;" />
+<p><strong>2.coast</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt <span class="nb">set</span> FONT_LABEL 10p
+gmt <span class="nb">set</span> MAP_FRAME_TYPE plain
+gmt <span class="nb">set</span> MAP_FRAME_PEN <span class="m">0</span>.5p
+gmt <span class="nb">set</span> MAP_TICK_LENGTH_PRIMARY 2p/1p
+gmt figure ex02 png E+600
+gmt subplot begin 2x2 -Fs4c/2.4c -M0.5c -SCb -SRl  -R-180/180/-90/90 -JX4c/2.4c
+    gmt makecpt -Cjet -T0/60/5 -D -H &gt;1.cpt
+
+    gmt subplot <span class="nb">set</span> <span class="m">0</span>,0
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c -Bxa90 -Bya75 -BWSen -Gdarkgray 
+    gmt plot tec.md -C1.cpt -Sc2p
+    gmt colorbar -C1.cpt -Bxa10 -By+l<span class="s2">&quot;TECU&quot;</span> -DJMR+v+w6/0.5+e+o6c/-2c
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">105</span> 00UT <span class="p">|</span> gmt text -F+f8p -N
+	
+    gmt subplot <span class="nb">set</span> <span class="m">0</span>,1
+    gmt coast -R-180/180/-90/90 -JX4c/2.4c -Bxa90 -Bya75 -BWSen -Gdarkgray
+    gmt plot tec.md -C1.cpt -Sc2p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">105</span> 02UT <span class="p">|</span> gmt text -F+f8p -N
+	
+    gmt subplot <span class="nb">set</span> <span class="m">1</span>,0
+    gmt coast -R-180/180/-90/90 -JX4c/2.4c -Bxa90 -Bya75 -BWSen -Gdarkgray
+    gmt plot tec.md -C1.cpt -Sc2p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">105</span> 04UT <span class="p">|</span> gmt text -F+f8p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">1</span>,1
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c -Bxa90 -Bya75 -BWSen -Gdarkgray
+    gmt plot tec.md -C1.cpt -Sc2p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">105</span> 06UT <span class="p">|</span> gmt text -F+f8p -N
+	
+gmt subplot end
+gmt end 
+</pre></div>
+</div>
+<img src="..\_static\ex04.png" alt="ex04" style="zoom: 15%;" />
+</section>
+<section id="id5">
+<h2>04.中国国界<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin ex01 png
+gmt coast -JD105/35/36/42/10c -R70/140/0/60 -Glightbrown -Slightblue -Ba10f5g10 -Lg130/8+c11+w900k+f+u
+gmt plot CN-border-La.gmt -W0.1p
+gmt end
+</pre></div>
+</div>
+<img src="..\_static\ex05.png" alt="ex01" style="zoom: 35%;" />
+</section>
+<section id="id6">
+<h2>05.图中图<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt set FONT 15p,0
+gmt set MAP_FRAME_TYPE plain
+gmt figure ex01 png E+600
+gmt basemap -JX15c/8c -R-180/180/-90/90 -BWSrt
+gmt coast  -R-180/180/-90/90 -JX15c/8c -Bxa90 -Bya30 -BWSen -W -A10000
+gmt plot area1.txt -W1p,red
+gmt plot area2.txt -W1p,red
+
+gmt inset begin -DjBR+w6.5c/4c+o0.1c -F+gwhite+p1p -M1c/0.8c
+    gmt set FONT 10p,0
+    gmt coast  -R-66/-54/-66/-60  -JX5c/3c  -Bxa6g6  -Bya4g4 -BWSen -W -A10000
+    gmt plot area1.txt -W1p,red
+    <span class="k">echo</span> -57.901  -63.321  ohi3 <span class="p">|</span>gmt plot -Sc5p -W1p,black -Glightred
+    <span class="k">echo</span> -57.901  -63.321  ohi3 <span class="p">|</span> gmt text -F+f15p,0 -D27p/0p
+gmt inset end    
+
+gmt inset begin -DjTL+w6.5c/4c+o0.1c -F+gwhite+p1p -M1.2c/0.6c
+    gmt set FONT 10p,0
+    gmt coast  -R135/149/40/52  -JX5c/3c  -Bxa6  -Bya4 -BWSen -W -A10000
+    gmt plot area2.txt -W1p,red
+    <span class="k">echo</span> 142.717  47.030  yssk <span class="p">|</span>gmt plot -Sc5p -W1p,black -Glightred
+    <span class="k">echo</span> 142.717  47.030  yssk <span class="p">|</span> gmt text -F+f15p,0 -D25p/0p
+gmt inset end   
+
+<span class="k">echo</span> -57.901  -63.321 9 6.2 <span class="p">|</span> gmt plot  -Sv0.5c+e -W1p -Gred
+<span class="k">echo</span> 142.717  47.030 180 8 <span class="p">|</span> gmt plot  -Sv0.5c+e -W1p -Gred
+
+gmt end 
+<span class="k">pause</span>
+</pre></div>
+</div>
+<img src="..\_static\ex06.png" alt="ex01" style="zoom: 35%;" />
+</section>
+<section id="id7">
+<h2>06.三维切片图<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt <span class="nb">set</span> MAP_FRAME_TYPE plain 
+gmt <span class="nb">set</span> MAP_FRAME_PEN <span class="m">0</span>.5p,black
+gmt figure ex01 png E+600
+gmt makecpt -Cjet -T0/60/5 -D
+
+gmt grdview <span class="m">00</span>.nc -JX8c/5c -JZ10c -R-180/180/-90/90/-100/500 -Bz100+l<span class="s2">&quot;km&quot;</span>  -I -Wm1p,white -p160/15/-100
+gmt coast -Bxa60+l<span class="s2">&quot;Lat(\260)&quot;</span> -Bya45+l<span class="s2">&quot;Lon(\260)&quot;</span> -Bz100+l<span class="s2">&quot;km&quot;</span>  -BWSrtu4 -S175/210/255 -Glightbrown -p160/15/-100
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p160/15/0
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p160/15/100
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p160/15/200
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p160/15/300
+gmt coast -Bxa60+l<span class="s2">&quot;Lat(\260)&quot;</span> -Bya45+l<span class="s2">&quot;Lon(\260)&quot;</span> -Bz100+l<span class="s2">&quot;km&quot;</span>  -BWSrtZ1 -S175/210/255 -Glightbrown -p160/15/-100
+gmt coast -Bxa60+l<span class="s2">&quot;Lat(\260)&quot;</span> -Bya45+l<span class="s2">&quot;Lon(\260)&quot;</span> -Bz100+l<span class="s2">&quot;km&quot;</span>  -BWSrtu23 -S175/210/255 -Glightbrown -p160/15/-100
+gmt colorbar -C -Bx -By+l<span class="s2">&quot;TECU&quot;</span> -DJMR+v+w6/0.5+e+o2c/2c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-9.4c -Ya9.2c 
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-8.15c -Ya9.05c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c -px160/15/500 -Xa-6.9c -Ya8.9c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-5.65c -Ya8.8c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-4.4c -Ya8.7c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-3.15c -Ya8.6c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-1.87c -Ya8.5c
+gmt end
+pause
+</pre></div>
+</div>
+<img src="..\_static\ex11.png" alt="ex01" style="zoom:12%;" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="GMT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../002---%E9%97%AE%E9%A2%98%E5%BA%94%E5%AF%B9%E7%B3%BB%E5%88%97/index.html" class="btn btn-neutral float-right" title="问题应对系列" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, 王开心.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
