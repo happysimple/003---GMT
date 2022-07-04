@@ -1,0 +1,10 @@
+# 中国国界
+
+```bash
+gmt begin ex01 png
+gmt coast -JD105/35/36/42/10c -R70/140/0/60 -Glightbrown -Slightblue -Ba10f5g10 -Lg130/8+c11+w900k+f+u
+gmt plot CN-border-La.gmt -W0.1p
+gmt end
+```
+
+<img src="../_static/ex03.png" alt="ex01" style="zoom: 35%;" />
