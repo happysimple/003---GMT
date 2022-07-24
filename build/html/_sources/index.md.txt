@@ -1,10 +1,26 @@
 # Welcome to HappyLaber!
 
-欢迎来到GMT篇章！如果您有任何建议或补充，欢迎您联系我！QQ：1292584987
-
-<center><img src="_static\000.jpg" alt="1" style="zoom:25%;" /></center>
+<center><img src="_static\001.jpg" alt="001" style="zoom:30%;" /></center>
 
 <center>做自己热爱，让心欢喜的事!</center>
+
+---
+
+<center>欢迎来到GMT篇章！如果您有任何问题或建议，欢迎您联系我！</center>
+
+<br>
+
+<center><img src="_static\我的名片.png" alt="我的名片" style="zoom:30%;" /></center>
+
+
+---
+<center>如果这个网站对您有帮助,欢迎您赞赏我!</center>
+
+<br>
+
+<center><img src="_static\parfor1.png" alt="parfor1" style="zoom:20%;" /></center>
+
+---
 
 ```{toctree}
 :maxdepth: 2
