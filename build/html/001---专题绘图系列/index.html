@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="晨昏线" href="001---%E6%99%A8%E6%98%8F%E7%BA%BF.html" />
-    <link rel="prev" title="Welcome to HappyLaber!" href="../index.html" /> 
+    <link rel="next" title="问题应对系列" href="../002---%E9%97%AE%E9%A2%98%E5%BA%94%E5%AF%B9%E7%B3%BB%E5%88%97/index.html" />
+    <link rel="prev" title="Welcome to HappyLaber！" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,11 +45,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">科研绘图</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="001---%E6%99%A8%E6%98%8F%E7%BA%BF.html">晨昏线</a></li>
-<li class="toctree-l2"><a class="reference internal" href="002---%E5%A4%9A%E5%9B%BE%E7%BB%98%E5%88%B6.html">多图绘制</a></li>
-<li class="toctree-l2"><a class="reference internal" href="003---%E4%B8%AD%E5%9B%BD%E5%9B%BD%E7%95%8C.html">中国国界</a></li>
-<li class="toctree-l2"><a class="reference internal" href="004---%E5%9B%BE%E4%B8%AD%E5%9B%BE.html">图中图</a></li>
-<li class="toctree-l2"><a class="reference internal" href="005---%E4%B8%89%E7%BB%B4%E5%88%87%E7%89%87%E5%9B%BE.html">三维切片图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">001.晨昏线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">002.多图绘制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">003.中国国界</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">004.图中图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">005.三维切片图</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../002---%E9%97%AE%E9%A2%98%E5%BA%94%E5%AF%B9%E7%B3%BB%E5%88%97/index.html">问题应对系列</a></li>
@@ -81,23 +81,196 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>科研绘图<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="001---%E6%99%A8%E6%98%8F%E7%BA%BF.html">晨昏线</a></li>
-<li class="toctree-l1"><a class="reference internal" href="002---%E5%A4%9A%E5%9B%BE%E7%BB%98%E5%88%B6.html">多图绘制</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003---%E4%B8%AD%E5%9B%BD%E5%9B%BD%E7%95%8C.html">中国国界</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004---%E5%9B%BE%E4%B8%AD%E5%9B%BE.html">图中图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="005---%E4%B8%89%E7%BB%B4%E5%88%87%E7%89%87%E5%9B%BE.html">三维切片图</a></li>
-</ul>
+<section id="id2">
+<h2>001.晨昏线<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt figure ex01 png E+600
+gmt coast -Rd -JX15c/8c -Bxa60g60 -Bya30g30 -W0.5p -A5000 -S175/210/255 --MAP_FRAME_TYPE<span class="o">=</span>plain
+REM 绘制晨昏线
+gmt solar -Td+d2016-02-09T16:00:00 -Gnavy@80 
+REM 计算指定时间太阳位置并绘制在底图上
+gmt solar -I+d2016-02-09T16:00:00 -C <span class="p">|</span> gmt plot -Sk@sunglasses/1.5c -Gyellow -W0.2p
+gmt end
+</pre></div>
 </div>
+<img src="..\_static\ex01.png" alt="ex01" style="zoom:15%;" />
+</section>
+<section id="id3">
+<h2>002.多图绘制<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt <span class="nb">set</span> FONT 10p,0
+gmt <span class="nb">set</span> MAP_FRAME_TYPE plain
+gmt <span class="nb">set</span> MAP_FRAME_PEN <span class="m">0</span>.5p
+gmt <span class="nb">set</span> MAP_TICK_LENGTH_PRIMARY 0p/0p
+gmt figure ex02 png E+600
+gmt subplot begin 3x4 -Fs4c/2.4c -M0.5c -SCb -SRl  -R-180/180/-90/90 -JX4c/2.4c  -Xr20c
+    gmt makecpt -Cno_green -T0/2/0.2 -D -H &gt;1.cpt
+    
+    gmt subplot <span class="nb">set</span> <span class="m">0</span>,0 
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90  -Bya45 -BWsen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c -Blrtb -A10000 -W0.5p
+    gmt colorbar -C1.cpt -Bxa0.4+l<span class="s2">&quot;TEC&quot;</span> -By -DJMR+h+w4/0.2+e+o11c/-7c
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2008</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">0</span>,1
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bwsen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c  -Blrtb -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2009</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">0</span>,2
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90  -Bwsen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c  -Blrtb -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2010</span><span class="p">|</span> gmt text -F+f10p -N
+    
+    gmt subplot <span class="nb">set</span> <span class="m">0</span>,3
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bwsen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c  -Blrtb -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2011</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">1</span>,0
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bya45+l<span class="s2">&quot;Geographic Latitude (\260)&quot;</span> -BWsen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c  -Blrtb -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2012</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">1</span>,1
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bwsen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c -Blrtb -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2013</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">1</span>,2
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bwsen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c -Blrtb -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2014</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">1</span>,3
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bxa90+l<span class="s2">&quot;Longitude(\260)&quot;</span> -Bya0 -BwSen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c -Blrtb  -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2015</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">2</span>,0
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bxa90+l<span class="s2">&quot;Longitude(\260)&quot;</span> -Bya45 -BWSen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c -Blrtb  -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2016</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">2</span>,1
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bxa90+l<span class="s2">&quot;Longitude(\260)&quot;</span> -Bya0 -BwSen 
+    gmt grdimage ex_2008.nc -C1.cpt -E1000 
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c -Blrtb -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2017</span><span class="p">|</span> gmt text -F+f10p -N
+
+    gmt subplot <span class="nb">set</span> <span class="m">2</span>,2
+    gmt basemap -JX4c/2.4c -R-180/180/-90/90 -Bxa90+l<span class="s2">&quot;Longitude(\260)&quot;</span> -Bya0 -BwSen
+    gmt grdimage ex_2008.nc -C1.cpt -E1000  
+    gmt coast  -R-180/180/-90/90 -JX4c/2.4c  -Blrtb -A10000 -W0.5p
+    <span class="nb">echo</span> <span class="m">0</span> <span class="m">103</span>  <span class="m">2018</span><span class="p">|</span> gmt text -F+f10p -N
+	
+gmt subplot end
+gmt end 
+</pre></div>
+</div>
+<img src="..\_static\ex02.png" alt="ex01" style="zoom: 15%;" />
+</section>
+<section id="id4">
+<h2>003.中国国界<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin ex01 png
+gmt coast -JD105/35/36/42/10c -R70/140/0/60 -Glightbrown -Slightblue -Ba10f5g10 -Lg130/8+c11+w900k+f+u
+gmt plot CN-border-La.gmt -W0.1p
+gmt end
+</pre></div>
+</div>
+<img src="../_static/ex03.png" alt="ex01" style="zoom: 35%;" />
+</section>
+<section id="id5">
+<h2>004.图中图<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt <span class="nb">set</span> FONT 15p,0
+gmt <span class="nb">set</span> MAP_FRAME_TYPE plain
+gmt figure ex01 png E+600
+
+REM 绘制底图
+gmt basemap -JX15c/8c -R-180/180/-90/90 -BWSrt
+gmt coast  -R-180/180/-90/90 -JX15c/8c -Bxa90 -Bya30 -BWSen -W -A10000
+REM 绘制小红框
+gmt plot area1.txt -W1p,red
+gmt plot area2.txt -W1p,red
+
+REM 绘制子图
+gmt inset begin -DjBR+w6.5c/4c+o0.1c -F+gwhite+p1p -M1c/0.8c
+    gmt <span class="nb">set</span> FONT 10p,0
+    gmt coast  -R-66/-54/-66/-60  -JX5c/3c  -Bxa6g6  -Bya4g4 -BWSen -W -A10000
+    REM 绘制大红框
+    gmt plot area1.txt -W1p,red
+    <span class="nb">echo</span> -57.901  -63.321  ohi3 <span class="p">|</span>gmt plot -Sc5p -W1p,black -Glightred
+    <span class="nb">echo</span> -57.901  -63.321  ohi3 <span class="p">|</span> gmt text -F+f15p,0 -D27p/0p
+gmt inset end    
+
+gmt inset begin -DjTL+w6.5c/4c+o0.1c -F+gwhite+p1p -M1.2c/0.6c
+    gmt <span class="nb">set</span> FONT 10p,0
+    gmt coast  -R135/149/40/52  -JX5c/3c  -Bxa6  -Bya4 -BWSen -W -A10000
+    gmt plot area2.txt -W1p,red
+    <span class="nb">echo</span> <span class="m">142</span>.717  <span class="m">47</span>.030  yssk <span class="p">|</span>gmt plot -Sc5p -W1p,black -Glightred
+    <span class="nb">echo</span> <span class="m">142</span>.717  <span class="m">47</span>.030  yssk <span class="p">|</span> gmt text -F+f15p,0 -D25p/0p
+gmt inset end   
+
+REM 绘制箭头
+<span class="nb">echo</span> -57.901  -63.321 <span class="m">9</span> <span class="m">6</span>.2 <span class="p">|</span> gmt plot  -Sv0.5c+e -W1p -Gred
+<span class="nb">echo</span> <span class="m">142</span>.717  <span class="m">47</span>.030 <span class="m">180</span> <span class="m">8</span> <span class="p">|</span> gmt plot  -Sv0.5c+e -W1p -Gred
+
+gmt end 
+pause
+</pre></div>
+</div>
+<img src="../_static/ex04.png" alt="ex01" style="zoom: 15%;" />
+</section>
+<section id="id6">
+<h2>005.三维切片图<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
+gmt <span class="nb">set</span> MAP_FRAME_TYPE plain 
+gmt <span class="nb">set</span> MAP_FRAME_PEN <span class="m">0</span>.5p,black
+gmt figure ex01 png E+600
+gmt makecpt -Cjet -T0/60/5 -D
+
+REM 平面图
+gmt grdview <span class="m">00</span>.nc -JX8c/5c -JZ10c -R-180/180/-90/90/-100/500 -Bz100+l<span class="s2">&quot;km&quot;</span>  -I -Wm1p,white -p160/15/-100
+gmt coast -Bxa60+l<span class="s2">&quot;Lat(\260)&quot;</span> -Bya45+l<span class="s2">&quot;Lon(\260)&quot;</span> -Bz100+l<span class="s2">&quot;km&quot;</span>  -BWSrtu4 -S175/210/255 -Glightbrown -p160/15/-100
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p160/15/0
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p160/15/100
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p160/15/200
+gmt grdimage <span class="m">00</span>.nc -E100 -C -p160/15/300
+gmt colorbar -C -Bx -By+l<span class="s2">&quot;TECU&quot;</span> -DJMR+v+w6/0.5+e+o2c/2c
+REM 绘制竖线
+gmt coast -Bxa60+l<span class="s2">&quot;Lat(\260)&quot;</span> -Bya45+l<span class="s2">&quot;Lon(\260)&quot;</span> -Bz100+l<span class="s2">&quot;km&quot;</span>  -BWSrtZ1 -S175/210/255 -Glightbrown -p160/15/-100
+gmt coast -Bxa60+l<span class="s2">&quot;Lat(\260)&quot;</span> -Bya45+l<span class="s2">&quot;Lon(\260)&quot;</span> -Bz100+l<span class="s2">&quot;km&quot;</span>  -BWSrtu23 -S175/210/255 -Glightbrown -p160/15/-100
+REM 切片图
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-9.4c -Ya9.2c 
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-8.15c -Ya9.05c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c -px160/15/500 -Xa-6.9c -Ya8.9c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-5.65c -Ya8.8c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-4.4c -Ya8.7c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-3.15c -Ya8.6c
+gmt grdimage <span class="m">00</span>.nc -E100 -C  -JX5c/1.7c  -px160/15/500 -Xa-1.87c -Ya8.5c
+gmt end
+</pre></div>
+</div>
+<img src="../_static/ex05.png" alt="ex01" style="zoom:15%;" />
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to HappyLaber!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="001---%E6%99%A8%E6%98%8F%E7%BA%BF.html" class="btn btn-neutral float-right" title="晨昏线" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to HappyLaber！" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../002---%E9%97%AE%E9%A2%98%E5%BA%94%E5%AF%B9%E7%B3%BB%E5%88%97/index.html" class="btn btn-neutral float-right" title="问题应对系列" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
